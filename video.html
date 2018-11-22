@@ -113,8 +113,12 @@ function initialize()
 	// build markerControls
 	markerRoot1 = new THREE.Group();
 	scene.add(markerRoot1);
-	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
+	/*let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
 		preset: 'custom', type: 'pattern', patternUrl: "https://raw.githubusercontent.com/Bruce0418/WebAR/master/pattern-marker (9).patt",
+	})
+	*/
+	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
+		type: 'pattern', patternUrl: "data/pattern-marker (461).patt",
 	})
 
 	let geometry1 = new THREE.PlaneBufferGeometry(2,2, 4,4);
