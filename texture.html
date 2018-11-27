@@ -118,14 +118,14 @@ function initialize()
 	/*Let texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
     renderer.render(scene);
 	});*/
-	var material = new THREE.MeshStandardMaterial({ color: “#444”, transparent: true, side: THREE.DoubleSide, alphaTest: 0.5 });
- 	var alphaMap = new THREE.TextureLoader().load('images/pig.gif');
-	material.alphaMap = alphaMap;
-	material.alphaMap.magFilter = THREE.NearestFilter;
-	var mesh1 = new THREE.Mesh(geometry1, material);
-	mesh1.rotation.x = -Math.PI/2;
-	markerRoot1.add( mesh1 );
+	var texture = loader.load( "images/pig.gif", render );
 	
+	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
+	
+	mesh1 = new THREE.Mesh( geometry1, material1 );
+	mesh1.rotation.x = -Math.PI/2;
+	
+	markerRoot1.add( mesh1 );
 }
 
 
