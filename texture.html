@@ -16,6 +16,8 @@
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
+<img id="gif1" src="images/gallery256.gif" rel:auto_play="1" width="50" height="50" rel:rubbable="1" />
+
 <!-- 
   Example created by Lee Stemkoski: https://github.com/stemkoski
   Based on the AR.js library and examples created by Jerome Etienne: https://github.com/jeromeetienne/AR.js/
@@ -120,12 +122,12 @@ function initialize()
 	/*Let texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
     renderer.render(scene);
 	});*/
-	let texture = THREE.ImageUtils.loadTexture('images/gallery256.gif', {}, function() {
-    renderer.render(scene);
-	});
+	var supGif = new SuperGif({ gif: document.getElementById('gif1') } );
+	supGif.load();
+	var gifCanvas = supGif.get_canvas();
 
+	let texture = new THREE.texture(gifCanvas);
 	material = new THREE.MeshBasicMaterial( { map: texture } );
-
 	material.displacementMap = material.map;
 
 	mesh1 = new THREE.Mesh( geometry1, material );
