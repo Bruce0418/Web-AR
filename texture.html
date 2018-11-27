@@ -112,12 +112,20 @@ function initialize()
 		type: 'pattern', patternUrl: "data/pattern-marker (40).patt",
 	})
 
+	var supGif = new SuperGif({ gif: ('gallery.gif')) } );
+	supGif.load();
+	var gifCanvas = supGif.get_canvas();
+
 	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
-	let loader = new THREE.TextureLoader();
-	let texture = loader.load( 'images/gallery.gif', render );
-	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
+	material = new THREE.MeshStandardMaterial();
+	material.map = new THREE.Texture( gifCanvas );
+	material.displacementMap = material.map;
 	
-	mesh1 = new THREE.Mesh( geometry1, material1 );
+	material.displacementScale = 200;
+	material.map.needsUpdate = true;
+	material.displacementMap.needsUpdate = true;
+
+	mesh1 = new THREE.Mesh( geometry1, material );
 	mesh1.rotation.x = -Math.PI/2;
 	
 	markerRoot1.add( mesh1 );
