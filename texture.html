@@ -31,6 +31,8 @@ var markerRoot1;
 
 var mesh1;
 
+var material;
+
 initialize();
 animate();
 
@@ -126,7 +128,7 @@ function initialize()
 
 	material.displacementMap = material.map;
 
-	mesh1 = new THREE.Mesh( geometry1, material1 );
+	mesh1 = new THREE.Mesh( geometry1, material );
 	mesh1.rotation.x = -Math.PI/2;
 	
 	markerRoot1.add( mesh1 );
@@ -146,7 +148,7 @@ function render()
 	renderer.render( scene, camera );
 }
 
-var material;
+
 
 function animate()
 {
