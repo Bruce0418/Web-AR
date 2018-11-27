@@ -122,8 +122,10 @@ function initialize()
     renderer.render(scene);
 	});
 
-	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
-	
+	material = new THREE.MeshBasicMaterial( { map: texture } );
+
+	material.displacementMap = material.map;
+
 	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.rotation.x = -Math.PI/2;
 	
@@ -144,6 +146,7 @@ function render()
 	renderer.render( scene, camera );
 }
 
+var material;
 
 function animate()
 {
@@ -152,6 +155,11 @@ function animate()
 	totalTime += deltaTime;
 	update();
 	render();
+
+	material.displacementScale = 200;
+	material.map.needsUpdate = true;
+	material.displacementMap.needsUpdate = true;
+
 }
 
 </script>
