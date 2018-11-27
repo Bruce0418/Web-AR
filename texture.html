@@ -15,7 +15,7 @@
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<img id="gif1" src="images/gallery.gif" rel:auto_play="1" width="512" height="512">
+
 <!-- 
   Example created by Lee Stemkoski: https://github.com/stemkoski
   Based on the AR.js library and examples created by Jerome Etienne: https://github.com/jeromeetienne/AR.js/
@@ -112,20 +112,16 @@ function initialize()
 		type: 'pattern', patternUrl: "data/pattern-marker (40).patt",
 	})
 
-	var supGif = new SuperGif({ gif: document.getElementById('gif1') } );
-    supGif.load();
-	var gifCanvas = supGif.get_canvas();
-
 	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
-	material = new THREE.MeshStandardMaterial();
-	material.map = new THREE.Texture( gifCanvas );
-	material.displacementMap = material.map;
-	
-	material.displacementScale = 200;
-	material.map.needsUpdate = true;
-	material.displacementMap.needsUpdate = true;
+	let loader = new THREE.TextureLoader();
+	//let texture = loader.load( 'images/Gallery 1.jpg', render );
+	texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
+    renderer.render(scene);
+	});
 
-	mesh1 = new THREE.Mesh( geometry1, material );
+	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
+	
+	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.rotation.x = -Math.PI/2;
 	
 	markerRoot1.add( mesh1 );
