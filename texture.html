@@ -118,7 +118,7 @@ function initialize()
 	/*Let texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
     renderer.render(scene);
 	});*/
-	var texture = new THREE.TextureLoader().load( "images/gallery.gif" );
+	var texture = loader.load( "images/gallery.gif", render );
 	
 	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
 	
