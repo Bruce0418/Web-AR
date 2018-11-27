@@ -16,7 +16,7 @@
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
-<img id="gif1" src="images/gallery256.gif" rel:auto_play="1" width="50" height="50" rel:rubbable="1" />
+<img id="gif1" src="images/gallery256.gif" rel:auto_play="1" width="150" height="150" rel:rubbable="1" />
 
 <!-- 
   Example created by Lee Stemkoski: https://github.com/stemkoski
@@ -122,7 +122,8 @@ function initialize()
 	/*Let texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
     renderer.render(scene);
 	});*/
-	var supGif = new SuperGif({ gif: document.getElementById('gif1') } );
+	
+	/*var supGif = new SuperGif({ gif: document.getElementById('gif1') } );
 	supGif.load();
 	var gifCanvas = supGif.get_canvas();
 
@@ -131,7 +132,7 @@ function initialize()
 	material.displacementMap = material.map;
 
 	mesh1 = new THREE.Mesh( geometry1, material );
-	mesh1.rotation.x = -Math.PI/2;
+	mesh1.rotation.x = -Math.PI/2;*/
 	
 	markerRoot1.add( mesh1 );
 }
