@@ -118,10 +118,12 @@ function initialize()
 	/*Let texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
     renderer.render(scene);
 	});*/
-	var texture = loader.load( "images/pig.gif", render );
+	let texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
+    renderer.render(scene);
+	});
+
+	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
 	
-	//let material1 = new THREE.MeshBasicMaterial( { map: texture } );
-	let material1 = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture("images/pig.gif") });
 	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.rotation.x = -Math.PI/2;
 	
