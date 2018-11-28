@@ -31,8 +31,6 @@ var markerRoot1;
 
 var mesh1;
 
-var material1;
-
 initialize();
 animate();
 
@@ -118,8 +116,8 @@ function initialize()
 	let loader = new THREE.TextureLoader();
 	//let texture = loader.load( 'images/Gallery 1.jpg', render );
 
-	material1 = new MeshBasicMaterial( {
-    map: THREE.ImageUtils.loadTexture('images/gallery256.jpg');
+	var material1 = new MeshBasicMaterial( {
+    map: THREE.ImageUtils.loadTexture('mygif.gif');											
 	});
 	
 	mesh1 = new THREE.Mesh( geometry1, material1 );
@@ -139,7 +137,6 @@ function update()
 
 function render()
 {
-	material1.map.needsUpdate = true;
 	renderer.render( scene, camera );
 }
 
