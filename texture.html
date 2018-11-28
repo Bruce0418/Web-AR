@@ -100,7 +100,7 @@ function initialize()
 	//let loader = new THREE.TextureLoader();
 	//let texture = loader.load( 'images/earth.jpg', render );
 	let material1 = new MeshBasicMaterial( {
-    map: THREE.ImageUtils.loadTexture('https://66.media.tumblr.com/d26724127f88993ccc45c70294ec2ece/tumblr_oofhopNoKn1s3rn2wo7_250.gif');
+    map: THREE.TextureLoader.load('https://66.media.tumblr.com/d26724127f88993ccc45c70294ec2ece/tumblr_oofhopNoKn1s3rn2wo7_250.gif');
 	});
 	
 	mesh1 = new THREE.Mesh( geometry1, material1 );
