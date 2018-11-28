@@ -97,8 +97,8 @@ function initialize()
 		type: 'pattern', patternUrl: "data/pattern-marker (40).patt",
 	})
 	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
-	let loader = new THREE.TextureLoader();
-	let texture = loader.load( 'images/earth.jpg', render );
+	//let loader = new THREE.TextureLoader();
+	//let texture = loader.load( 'images/earth.jpg', render );
 	let material1 = new MeshBasicMaterial( {
     map: THREE.ImageUtils.loadTexture('https://66.media.tumblr.com/d26724127f88993ccc45c70294ec2ece/tumblr_oofhopNoKn1s3rn2wo7_250.gif');
 	});
