@@ -120,7 +120,7 @@ function initialize()
 	let loader = new THREE.TextureLoader();
 	//let texture = loader.load( 'images/Gallery 1.jpg', render );
 	
-	Let texture = THREE.TextureLoader.loadTexture('images/gallery.gif', {}, function() {
+	Let texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
     renderer.render(scene);
 	});
 	
