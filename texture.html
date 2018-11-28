@@ -31,6 +31,8 @@ var markerRoot1;
 
 var mesh1;
 
+var material1;
+
 initialize();
 animate();
 
@@ -115,13 +117,10 @@ function initialize()
 	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
 	let loader = new THREE.TextureLoader();
 	//let texture = loader.load( 'images/Gallery 1.jpg', render );
-	var texture = loader.loadTexture('images/gallery.gif', {}, function() {
-    renderer.render(scene);
-	});
 
-	//var texture = loader.load( "images/gallery.gif", render );
-	
-	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
+	material1 = new MeshBasicMaterial( {
+    map: THREE.ImageUtils.loadTexture('https://66.media.tumblr.com/d26724127f88993ccc45c70294ec2ece/tumblr_oofhopNoKn1s3rn2wo7_250.gif');
+	});
 	
 	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.rotation.x = -Math.PI/2;
@@ -140,6 +139,7 @@ function update()
 
 function render()
 {
+	material1.map.needsUpdate = true;
 	renderer.render( scene, camera );
 }
 
