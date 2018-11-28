@@ -96,7 +96,7 @@ function initialize()
 	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
 		type: 'pattern', patternUrl: "data/pattern-marker (40).patt",
 	})
-	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
+	let geometry1 = new THREE.PlaneBufferGeometry(5,5, 4,4);
 	//let loader = new THREE.TextureLoader();
 	//let texture = new THREE.ImageUtils.loadTexture( 'images/tumblr_oofhopNoKn1s3rn2wo7_250.gif', render );
 	let texture = new THREE.ImageUtils.loadTexture( 'images/gallery250.gif', render );
@@ -104,7 +104,7 @@ function initialize()
 	
 	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.rotation.x = -Math.PI/2;
-	
+	mesh.position.set(-5, -5, 0);
 	markerRoot1.add( mesh1 );
 }
 function update()
