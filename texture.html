@@ -124,6 +124,8 @@ function initialize()
     renderer.render(scene);
 	});
 	
+	material1 = new THREE.MeshBasicMaterial( { map: texture } );
+	
 	/*var supGif = new SuperGif({ gif: document.getElementById('gif1') } );
 	supGif.load();
 	var gifCanvas = supGif.get_canvas();
@@ -132,7 +134,7 @@ function initialize()
 	material = new THREE.MeshBasicMaterial( { map: texture } );
 	material.displacementMap = material.map;
 */
-	mesh1 = new THREE.Mesh( geometry1, material );
+	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.rotation.x = -Math.PI/2;
 	
 	markerRoot1.add( mesh1 );
