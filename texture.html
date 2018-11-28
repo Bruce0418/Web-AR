@@ -119,18 +119,19 @@ function initialize()
 	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
 	let loader = new THREE.TextureLoader();
 	//let texture = loader.load( 'images/Gallery 1.jpg', render );
-	/*Let texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
-    renderer.render(scene);
-	});*/
 	
-	var supGif = new SuperGif({ gif: document.getElementById('gif1') } );
+	Let texture = THREE.TextureLoader.loadTexture('images/gallery.gif', {}, function() {
+    renderer.render(scene);
+	});
+	
+	/*var supGif = new SuperGif({ gif: document.getElementById('gif1') } );
 	supGif.load();
 	var gifCanvas = supGif.get_canvas();
 
 	let texture = new THREE.texture(gifCanvas);
 	material = new THREE.MeshBasicMaterial( { map: texture } );
 	material.displacementMap = material.map;
-
+*/
 	mesh1 = new THREE.Mesh( geometry1, material );
 	mesh1.rotation.x = -Math.PI/2;
 	
