@@ -16,8 +16,6 @@
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
-<!-- <img id="gif1" src="images/gallery256.gif" rel:auto_play="0" width="250" height="250" rel:rubbable="1" /> -->
-
 <!-- 
   Example created by Lee Stemkoski: https://github.com/stemkoski
   Based on the AR.js library and examples created by Jerome Etienne: https://github.com/jeromeetienne/AR.js/
@@ -32,8 +30,6 @@ var arToolkitSource, arToolkitContext;
 var markerRoot1;
 
 var mesh1;
-
-var material1;
 
 initialize();
 animate();
@@ -119,21 +115,13 @@ function initialize()
 	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
 	let loader = new THREE.TextureLoader();
 	//let texture = loader.load( 'images/Gallery 1.jpg', render );
-	
-	Let texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
+	/*Let texture = THREE.ImageUtils.loadTexture('images/gallery.gif', {}, function() {
     renderer.render(scene);
-	});
+	});*/
+	var texture = loader.load( "images/gallery.gif", render );
 	
-	material1 = new THREE.MeshBasicMaterial( { map: texture } );
-
-	/*var supGif = new SuperGif({ gif: document.getElementById('gif1') } );
-	supGif.load();
-	var gifCanvas = supGif.get_canvas();
-
-	let texture = new THREE.texture(gifCanvas);
-	material = new THREE.MeshBasicMaterial( { map: texture } );
-	material.displacementMap = material.map;
-*/
+	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
+	
 	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.rotation.x = -Math.PI/2;
 	
@@ -151,10 +139,8 @@ function update()
 
 function render()
 {
-	//material1.map.needsUpdate = true;
 	renderer.render( scene, camera );
 }
-
 
 
 function animate()
@@ -164,11 +150,6 @@ function animate()
 	totalTime += deltaTime;
 	update();
 	render();
-
-	//material1.displacementScale = 200;
-	
-	//material1.displacementMap.needsUpdate = true;
-
 }
 
 </script>
