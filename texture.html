@@ -121,6 +121,8 @@ function animate()
 	requestAnimationFrame(animate);
 	deltaTime = clock.getDelta();
 	totalTime += deltaTime;
+	// update the GIF texture
+    mesh1.material.map.needsUpdate = true;
 	update();
 	render();
 }
