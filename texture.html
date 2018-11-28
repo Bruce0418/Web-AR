@@ -119,7 +119,7 @@ function initialize()
 	//let texture = loader.load( 'images/Gallery 1.jpg', render );
 
 	material1 = new MeshBasicMaterial( {
-    map: THREE.ImageUtils.loadTexture('https://66.media.tumblr.com/d26724127f88993ccc45c70294ec2ece/tumblr_oofhopNoKn1s3rn2wo7_250.gif');
+    map: THREE.ImageUtils.loadTexture('images/gallery256.jpg');
 	});
 	
 	mesh1 = new THREE.Mesh( geometry1, material1 );
@@ -139,7 +139,7 @@ function update()
 
 function render()
 {
-	//material1.map.needsUpdate = true;
+	material1.map.needsUpdate = true;
 	renderer.render( scene, camera );
 }
 
