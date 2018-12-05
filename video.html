@@ -28,139 +28,76 @@
 
 <script>
 
-var scene, camera, renderer, clock, deltaTime, totalTime;
+var scene
+var AR-Object01
+var AR-Object02
+var AR-VideoScreen
 
-var arToolkitSource, arToolkitContext;
+AFRAME.registerComponent('markerhandler', {
 
-var markerRoot1;
+  init: function() {
 
-var mesh1;
+    // Set up the tick throttling. Will check if marker is active every 500ms
+    this.tick = AFRAME.utils.throttleTick(this.tick, 500, this);
+  },
 
-initialize();
-animate();
+  tick: function(t, dt) {
 
-function initialize()
-{
-	scene = new THREE.Scene();
+    if (document.querySelector("#hiroMarker").object3D.visible == true && playing == false) {
+      // MARKER IS PRESENT
+      //alert("MARKER IS PRESENT")
 
-	let ambientLight = new THREE.AmbientLight( 0xcccccc, 0.5 );
-	scene.add( ambientLight );
-				
-	camera = new THREE.Camera();
-	scene.add(camera);
+  		scene = document.querySelector('#a-scene');
+  	  AR-Object01 = document.querySelector('#Object01');
+    	AR-Object02 = document.querySelector('#Object02');
+      AR-VideoScreen =  document.querySelector('#videoScreen');
 
-	renderer = new THREE.WebGLRenderer({
-		antialias : true,
-		alpha: true
-	});
-	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
-	renderer.setSize( 640, 480 );
-	renderer.domElement.style.position = 'absolute'
-	renderer.domElement.style.top = '0px'
-	renderer.domElement.style.left = '0px'
-	document.body.appendChild( renderer.domElement );
+      AR-Object01.addEventListener('click', function () { console.log("object01 clickable in AR") });
+      AR-Object02.addEventListener('click', function () { console.log("object02 clickable in AR") });
+      videoScreen.addEventListener('click', function () { playPauseVideo(); console.log("Video Play Toggle") });
+      playing = true;
 
-	clock = new THREE.Clock();
-	deltaTime = 0;
-	totalTime = 0;
-	
-	////////////////////////////////////////////////////////////
-	// setup arToolkitSource
-	////////////////////////////////////////////////////////////
+    }
 
-	arToolkitSource = new THREEx.ArToolkitSource({
-		sourceType : 'webcam',
-	});
+    }else {
+      // MARKER IS HIDDEN, do nothing (up to you)
+    }
 
-	function onResize()
-	{
-		arToolkitSource.onResize()	
-		arToolkitSource.copySizeTo(renderer.domElement)	
-		if ( arToolkitContext.arController !== null )
-		{
-			arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)	
-		}	
-	}
+});
 
-	arToolkitSource.init(function onReady(){
-		onResize()
-	});
-	
-	// handle resize event
-	window.addEventListener('resize', function(){
-		onResize()
-	});
-	
-	////////////////////////////////////////////////////////////
-	// setup arToolkitContext
-	////////////////////////////////////////////////////////////	
+function playPauseVideo(){
 
-	// create atToolkitContext
-	arToolkitContext = new THREEx.ArToolkitContext({
-		cameraParametersUrl: 'data/camera_para.dat',
-		detectionMode: 'mono'
-	});
-	
-	// copy projection matrix to camera when initialization complete
-	arToolkitContext.init( function onCompleted(){
-		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
-	});
-
-	////////////////////////////////////////////////////////////
-	// setup markerRoots
-	////////////////////////////////////////////////////////////
-
-	// build markerControls
-	markerRoot1 = new THREE.Group();
-	scene.add(markerRoot1);
-	/*let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-		preset: 'custom', type: 'pattern', patternUrl: "https://raw.githubusercontent.com/Bruce0418/WebAR/master/pattern-marker (9).patt",
-	})
-	*/
-	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-		type: 'pattern', patternUrl: "data/pattern-marker (40).patt",
-	})
-
-	let geometry1 = new THREE.PlaneBufferGeometry(2,2, 4,4);
-
-	let video = document.getElementById( 'video' );
-	let texture = new THREE.VideoTexture( video );
-	texture.minFilter = THREE.LinearFilter;
-	texture.magFilter = THREE.LinearFilter;
-	texture.format = THREE.RGBFormat;
-	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
-	
-	mesh1 = new THREE.Mesh( geometry1, material1 );
-	mesh1.rotation.x = -Math.PI/2;
-	
-	markerRoot1.add( mesh1 );
+if (video.paused)
+    video.play();
+  else
+    video.pause();
 }
 
-
-function update()
-{
-	// update artoolkit on every frame
-	if ( arToolkitSource.ready !== false )
-		arToolkitContext.update( arToolkitSource.domElement );
-}
-
-
-function render()
-{
-	renderer.render( scene, camera );
-}
-
-
-function animate()
-{
-	requestAnimationFrame(animate);
-	deltaTime = clock.getDelta();
-	totalTime += deltaTime;
-	update();
-	render();
-}
 
 </script>
+
+<a-scene id="a-scene" cursor="rayOrigin: mouse" embedded arjs="sourceType:webcam; maxDetectionRate:30; debugUiEnabled:false;">
+
+      <a-assets>
+
+      <video id="video" loop="true" src="yourvideo.mp4" webkit-playsinline>
+
+   </a-assets>
+
+   <a-marker preset='hiro' markerhandler emitevents="true" id="hiroMarker">
+
+
+    <a-entity id="AR-Object01" (info about this object)></a-entity>
+    <a-entity id="AR-Object02" (info about this object)></a-entity>
+
+    <a-video id="videoScreen" src="#video" width="16" height="9" autoplay=true></a-video>
+
+
+   </a-marker>
+
+<a-entity camera></a-entity>
+
+  </a-scene>
 
 </body>
 </html>
